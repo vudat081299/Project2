@@ -17,6 +17,22 @@ final class Annotation: Codable {
     }
 }
 
+final class AnnotationUpload: Codable {
+    var name: String
+    var latitude: String
+    var longitude: String
+    var description: String
+    var file: File
+    
+    init(name: String, description: String, latitude: String, longitude: String, file: File) {
+        self.name = name
+        self.latitude = latitude
+        self.longitude = longitude
+        self.description = description
+        self.file = file
+    }
+}
+
 final class AnnotationInfo: Codable {
     var id: Int
     var latitude: String

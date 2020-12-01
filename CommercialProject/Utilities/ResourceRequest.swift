@@ -40,7 +40,7 @@ enum SaveResult<ResourceType> {
 
 struct ResourceRequest<ResourceType> where ResourceType: Codable {
 
-  let baseURL = "http://192.168.0.110:8080/api/"
+  let baseURL = "http://192.168.1.65:8080/api/"
   let resourceURL: URL
 
   init(resourcePath: String) {
@@ -60,7 +60,7 @@ struct ResourceRequest<ResourceType> where ResourceType: Codable {
 
       do {
         let decoder = JSONDecoder()
-        let resources: [ResourceType] = try! decoder.decode([ResourceType].self, from: jsonData)
+        let resources: [ResourceType] = try decoder.decode([ResourceType].self, from: jsonData)
         completion(.success(resources))
       } catch {
         completion(.failure)

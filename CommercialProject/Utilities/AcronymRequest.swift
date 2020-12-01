@@ -42,7 +42,7 @@ struct AcronymRequest {
   let resource: URL
 
   init(_ acronymID: Int) {
-    let resourceString = "http://192.168.0.110:8080/api/annotations/checktotal/\(acronymID)"
+    let resourceString = "http://192.168.1.65:8080/api/annotations/checktotal/\(acronymID)"
     guard let resourceURL = URL(string: resourceString) else {
       fatalError()
     }

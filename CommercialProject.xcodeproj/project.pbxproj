@@ -24,6 +24,8 @@
 		6B998EA02570FE45003C7A73 /* AcronymRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B998E9B2570FE45003C7A73 /* AcronymRequest.swift */; };
 		6B998EA12570FE45003C7A73 /* ErrorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B998E9C2570FE45003C7A73 /* ErrorPresenter.swift */; };
 		6B998EA22570FE45003C7A73 /* Annotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B998E9E2570FE45003C7A73 /* Annotation.swift */; };
+		6BE21E752573C86D00A11117 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE21E742573C86D00A11117 /* File.swift */; };
+		6BE21E7A2573D1FF00A11117 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6BE21E792573D1FF00A11117 /* UIImage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		6B998E9B2570FE45003C7A73 /* AcronymRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AcronymRequest.swift; sourceTree = "<group>"; };
 		6B998E9C2570FE45003C7A73 /* ErrorPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorPresenter.swift; sourceTree = "<group>"; };
 		6B998E9E2570FE45003C7A73 /* Annotation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Annotation.swift; sourceTree = "<group>"; };
+		6BE21E742573C86D00A11117 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		6BE21E792573D1FF00A11117 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +82,7 @@
 		6B8277D72564FE2C00A1E0D8 /* CommercialProject */ = {
 			isa = PBXGroup;
 			children = (
+				6BE21E722573C7E000A11117 /* Core */,
 				6B998E9D2570FE45003C7A73 /* Model */,
 				6B998E992570FE45003C7A73 /* Utilities */,
 				6B8277F82565808D00A1E0D8 /* Annotations */,
@@ -122,6 +127,31 @@
 				6B998E9E2570FE45003C7A73 /* Annotation.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6BE21E722573C7E000A11117 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				6BE21E782573D1E100A11117 /* Extension */,
+				6BE21E732573C7F600A11117 /* File */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		6BE21E732573C7F600A11117 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				6BE21E742573C86D00A11117 /* File.swift */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		6BE21E782573D1E100A11117 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				6BE21E792573D1FF00A11117 /* UIImage.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,7 +233,9 @@
 				6B8277DD2564FE2C00A1E0D8 /* ViewController.swift in Sources */,
 				6B8277D92564FE2C00A1E0D8 /* AppDelegate.swift in Sources */,
 				6B8277F125650FC500A1E0D8 /* MapViewController.swift in Sources */,
+				6BE21E7A2573D1FF00A11117 /* UIImage.swift in Sources */,
 				6B8278042565810B00A1E0D8 /* CustomAnnotationView.swift in Sources */,
+				6BE21E752573C86D00A11117 /* File.swift in Sources */,
 				6B827801256580CD00A1E0D8 /* SanFranciscoAnnotation.swift in Sources */,
 				6B8277DB2564FE2C00A1E0D8 /* SceneDelegate.swift in Sources */,
 				6B998EA22570FE45003C7A73 /* Annotation.swift in Sources */,

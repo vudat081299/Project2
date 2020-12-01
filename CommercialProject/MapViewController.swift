@@ -11,6 +11,9 @@ import MapKit
 
 class MapViewController: UIViewController, CLLocationManagerDelegate {
     
+    
+    static var userLocation = CLLocation()
+    
     @IBOutlet weak var mapView: MKMapView!
     var locationManager:CLLocationManager!
     private var allAnnotations: [MKAnnotation]?
@@ -73,6 +76,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
         print("array: \(myarray)")
         Timer.scheduledTimer(timeInterval: 10.0, target: self, selector: #selector(self.setupData), userInfo: nil, repeats: true)
         getAnnotationList()
+        centerMapOnSanFrancisco()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -88,7 +92,7 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
 //        }
         
         
-        let checkTotalOfAnnotations = AcronymRequest(myarray.count - 1)
+        let checkTotalOfAnnotations = AcronymRequest(myarray.count)
         checkTotalOfAnnotations.check { [weak self] result in
           switch result {
           case .success(let data):
@@ -157,6 +161,9 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     func annotationsInfoMaker (_ annotationInfos: [AnnotationInfo]) -> [FerryBuildingAnnotation] {
         var fer = [FerryBuildingAnnotation]()
         for subAnnotationInfo in annotationInfos {
+            if !myarray.contains("\(String(subAnnotationInfo.id) + ".png")") {
+                continue
+            }
             print(subAnnotationInfo)
             let latitide = Double(subAnnotationInfo.latitude)!
             let longitude = Double(subAnnotationInfo.longitude)!
@@ -181,8 +188,8 @@ class MapViewController: UIViewController, CLLocationManagerDelegate {
     }
     
     private func centerMapOnSanFrancisco() {
-        let span = MKCoordinateSpan(latitudeDelta: 0.15, longitudeDelta: 0.15)
-        let center = CLLocationCoordinate2D(latitude: x, longitude: 105.493_760)
+        let span = MKCoordinateSpan(latitudeDelta: 0.8, longitudeDelta: 0.8)
+        let center = CLLocationCoordinate2D(latitude: 21.795_316, longitude: 105.493_760)
         mapView.setRegion(MKCoordinateRegion(center: center, span: span), animated: true)
     }
     
@@ -343,7 +350,7 @@ extension MapViewController: MKMapViewDelegate {
             // Provide an image view to use as the accessory view's detail view.
             if (annotation.title != nil && myarray.contains(annotation.title!)) {
                 let data = UserDefaults.standard.object(forKey: annotation.title!) as! String
-                print(data)
+//                print(data)
                 let imageDes = UIImage(data: Data(base64Encoded: data)!)
                 markerAnnotationView.detailCalloutAccessoryView = UIImageView(image: imageDes)
             }
@@ -361,7 +368,8 @@ extension MapViewController: MKMapViewDelegate {
     
     //MARK: - location delegate methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let userLocation :CLLocation = locations[0] as CLLocation
+//        let userLocation :CLLocation = locations[0] as CLLocation
+        MapViewController.userLocation = locations[0] as CLLocation
 
 //        print("user latitude = \(userLocation.coordinate.latitude)")
 //        print("user longitude = \(userLocation.coordinate.longitude)")
@@ -371,15 +379,15 @@ extension MapViewController: MKMapViewDelegate {
 //        print("\(userLocation.coordinate.latitude) ----- \(userLocation.coordinate.longitude)")
 
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(userLocation) { (placemarks, error) in
+        geocoder.reverseGeocodeLocation(MapViewController.userLocation) { (placemarks, error) in
             if (error != nil){
-                print("error in reverseGeocode - can not get location of device!")
+//                print("error in reverseGeocode - can not get location of device!")
             }
             var placemark: [CLPlacemark]!
             if placemarks != nil {
                 placemark = placemarks! as [CLPlacemark]
             } else {
-                print("loading location..")
+//                print("loading location..")
                 return
             }
             if placemark.count>0{

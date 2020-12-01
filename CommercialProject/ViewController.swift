@@ -221,6 +221,18 @@ class ViewController: UIViewController {
     }
     
     @IBAction func upload(_ sender: UIBarButtonItem) {
+        let user = AnnotationUpload(name: "Test", description: "Test", latitude: String(MapViewController.userLocation.coordinate.latitude), longitude: String(MapViewController.userLocation.coordinate.longitude), file: File(data: (self.capturedImageView.image?.pngData())!, filename: "test"))
+        ResourceRequest<AnnotationUpload>(resourcePath: "annotations").save(user) { [weak self] result in
+          switch result {
+          case .failure:
+            ErrorPresenter.showError(message: "There was a problem saving the user", on: self)
+          case .success:
+            DispatchQueue.main.async { [weak self] in
+                print("successful created annotation!")
+//              self?.navigationController?.popViewController(animated: true)
+            }
+          }
+        }
     }
     
     @IBAction func switchCamera(_ sender: UIButton) {
@@ -252,11 +264,10 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         let uiImage = UIImage(ciImage: ciImage)
         
         DispatchQueue.main.async {
-            self.capturedImageView.image = uiImage
+            self.capturedImageView.image = uiImage.resized(toWidth: 150.0)
             self.takePicture = false
         }
     }
-        
 }
 
 extension ViewController {
@@ -310,3 +321,9 @@ extension ViewController {
         }
     }
 }
+
+
+
+
+
+
